@@ -8,15 +8,12 @@
 
 using namespace std;
 
-typedef struct sqllist
+int main()
 {
-    int data[maxsize];
-    int length;
-}
-
-int
-main()
-{
-    // cout << "commit test" << endl;
+    int input;
+    while (scanf("%d", &input) != EOF)
+    {
+        cout << input << endl;
+    }
     return 0;
 }
