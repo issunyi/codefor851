@@ -30,7 +30,7 @@ void add_linklist(linklist *L, int data)
     node->data = data;
     while (L->next != NULL)
         L = L->next;
-    L = node;
+    L->next = node;
     // cout << "add success" << endl;
     // cout << L->data << endl;
 }
@@ -52,9 +52,33 @@ void insert_linklist(linklist *L, int i, int data)
 void delete_linklist(linklist *L, int i)
 {
     int count = 0;
-    linklist *temp = L;
     while (count++ != i - 1)
-        temp = temp->next;
+        L = L->next;
+    linklist *temp = L->next;
+    L->next = L->next->next;
+    free(temp);
+}
+
+// 输出链表中所有数
+void display_linklist(linklist *L)
+{
+    linklist *l = L->next;
+    while (l != NULL)
+    {
+        cout << l->data << " ";
+        l = l->next;
+    }
+    cout << endl;
+}
+
+// 按值查找
+int search_linklist(linklist *L, int data)
+{
+    int i = 1;
+    linklist *l = L->next;
+    while (l->data != data)
+        i++;
+    return i;
 }
 
 int main()
@@ -62,8 +86,14 @@ int main()
     // cout << "success test" << endl;
     linklist *L;
     L = init_linklist();
-    // add_linklist(L, 4);
+    add_linklist(L, 4);
+    add_linklist(L, 2);
+    add_linklist(L, 1);
+    add_linklist(L, 3);
+    add_linklist(L, 6);
+    add_linklist(L, 7);
+    display_linklist(L);
     // insert_linklist(L, 1, 5);
-
+    // cout << L->next->data << endl;
     return 0;
 }
