@@ -11,7 +11,7 @@ using namespace std;
 typedef struct linklist
 {
     int data;
-    linklist *pre, *next;
+    struct linklist *pre, *next;
 } linklist;
 
 // 初始化头节点
